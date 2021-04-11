@@ -323,7 +323,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 }
 
 bool Hook::Detour32(BYTE *src, BYTE *dst, const uintptr_t len) {
-
+    // https://guidedhacking.com/threads/opengl-swapbuffers-hooking-for-drawings-and-etc.10943/
     // A jmp requires 5 bytes 
     if (len < 5) {
         return false;
@@ -348,7 +348,7 @@ bool Hook::Detour32(BYTE *src, BYTE *dst, const uintptr_t len) {
 }
 
 BYTE* Hook::TrampHook32(BYTE* src, BYTE* dst, const uintptr_t len) {
-
+    // https://guidedhacking.com/threads/opengl-swapbuffers-hooking-for-drawings-and-etc.10943/
     if (len < 5) {
         return 0;
     }
@@ -492,6 +492,7 @@ void GL::draw_dot(float x, float y, color color) {
 }
 
 void GL::setup_orth() {
+    // https://guidedhacking.com/threads/how-to-get-started-with-opengl-hacks.11475/
     // Set up orthographic projection matrix
     glPushAttrib(GL_ALL_ATTRIB_BITS);
     glPushMatrix();
@@ -508,7 +509,9 @@ void GL::setup_orth() {
     glDisable(GL_DEPTH_TEST);
 }
 
+
 void GL::restore_orth() {
+    // https://guidedhacking.com/threads/how-to-get-started-with-opengl-hacks.11475/
     // Restore original orthographic projection matrix
     glPopMatrix();
     glPopAttrib();
@@ -570,7 +573,8 @@ int GL::Font::get_height() {
 }
 
 bool ESP::world_to_screen(vec3 pos, vec3& screen, float viewMatrix[16], int windowWidth, int windowHeight) {
-    
+    // https://guidedhacking.com/threads/so-what-is-a-viewmatrix-anyway-and-how-does-a-w2s-work.10964/
+
     vec4 clipCoords;
     clipCoords.x = pos.x * viewMatrix[0] + pos.y * viewMatrix[4] + pos.z * viewMatrix[8] + viewMatrix[12];
     clipCoords.y = pos.x * viewMatrix[1] + pos.y * viewMatrix[5] + pos.z * viewMatrix[9] + viewMatrix[13];
